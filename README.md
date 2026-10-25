@@ -24,3 +24,10 @@ The trade-off is flexibility. The array length is fixed at construction; there i
 ## The awkward edge
 
 Indices are **1-based**. `update(0, x)` and `prefix_sum(-1)` raise. This is deliberate: the Fenwick update step `i += i & -i` is only correct when the root sentinel lives at index 0, so callers must work in 1-based space. `prefix_sum(0)` is allowed and returns 0 (the empty prefix). `prefix_sum(i)` for `i > n` silently clamps to `n` rather than raising, because a prefix longer than the array is unambiguously the whole array.
+
+## Design notes
+
+The window stores values eagerly rather than keeping running aggregates. Running
+sums drift with floating point over long streams, and recomputing from a small
+buffer is cheap enough that the drift is not worth the speed.
+
