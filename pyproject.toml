@@ -1,6 +1,6 @@
 [project]
 name = "binary-indexed-tree-py"
-version = "0.1.0"
+version = "0.1.1"
 description = "1-indexed Fenwick tree for prefix-sum queries and point updates in O(log n)"
 requires-python = ">=3.10"
 dependencies = []
